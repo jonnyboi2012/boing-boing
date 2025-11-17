@@ -33,5 +33,10 @@ window.addEventListener("DOMContentLoaded", () => {
     window.location.href = "../../index.html";
   };
 
+  function openGame(gamePath) {
+  // Redirect to the game page
+  window.location.href = gamePath;
+}
+
   document.body.appendChild(btn);
 });
