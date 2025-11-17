@@ -1,53 +1,37 @@
-function openGame(url) {
-    const win = window.open("about:blank", "_blank");
+window.addEventListener("DOMContentLoaded", () => {
+  // Don't show on homepage
+  if (location.pathname.endsWith("index.html") || location.pathname === "/") return;
 
-    win.document.write(`
-        <html>
-        <head>
-            <title>Game</title>
-            <style>
-                body {
-                    margin: 0;
-                    background: black;
-                    overflow: hidden;
-                }
-                #topbar {
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    background: rgba(20,20,20,0.85);
-                    padding: 10px;
-                    display: flex;
-                    z-index: 9999;
-                    backdrop-filter: blur(6px);
-                }
-                button {
-                    background: #333;
-                    border: none;
-                    color: white;
-                    padding: 8px 14px;
-                    border-radius: 8px;
-                    cursor: pointer;
-                    font-size: 15px;
-                }
-                iframe {
-                    position: absolute;
-                    top: 50px;
-                    left: 0;
-                    width: 100%;
-                    height: calc(100% - 50px);
-                    border: none;
-                }
-            </style>
-        </head>
-        <body>
-            <div id="topbar">
-                <button onclick="window.close()">Close</button>
-            </div>
+  // Create the button
+  const btn = document.createElement("div");
+  btn.textContent = "⬅ Back";
+  btn.style.position = "fixed";
+  btn.style.top = "15px";
+  btn.style.left = "15px";
+  btn.style.background = "#1a1a1a";
+  btn.style.padding = "10px 18px";
+  btn.style.borderRadius = "12px";
+  btn.style.color = "white";
+  btn.style.fontSize = "15px";
+  btn.style.cursor = "pointer";
+  btn.style.boxShadow = "0 3px 8px rgba(0,0,0,0.4)";
+  btn.style.transition = "0.2s ease";
+  btn.style.userSelect = "none";
+  btn.style.zIndex = "9999";
 
-            <iframe src="${url}"></iframe>
-        </body>
-        </html>
-    `);
-}
+  btn.onmouseover = () => {
+    btn.style.background = "#2a2a2a";
+    btn.style.transform = "scale(1.05)";
+  };
+
+  btn.onmouseout = () => {
+    btn.style.background = "#1a1a1a";
+    btn.style.transform = "scale(1.0)";
+  };
+
+  btn.onclick = () => {
+    window.location.href = "../../index.html";
+  };
+
+  document.body.appendChild(btn);
+});
